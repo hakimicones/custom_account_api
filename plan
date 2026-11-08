@@ -1,0 +1,70 @@
+**Prompt pour créer le module `utilisateur` dans Odoo**
+
+```mermaid
+graph TD
+    A[Nom du modèle] -->|nom| Utilisateur
+    A -->|prenom| Utilisateur
+    A -->|email| Utilisateur
+    A -->|mot_de_passe| Utilisateur
+    A -->|role| Utilisateur
+
+    B[Relations]
+    B -->|app_mobile| Utilisateur
+    B -->|waste_picker| Utilisateur
+
+    C[Champs du modèle]
+    C -->|client_id| Utilisateur
+    C -->|nom| Utilisateur
+    C -->|prenom| Utilisateur
+    C -->|email| Utilisateur
+    C -->|mot_de_passe| Utilisateur
+    C -->|role| Utilisateur
+
+    D[Relations]
+    D -->|app_mobile| Utilisateur
+    D -->|waste_picker| Utilisateur
+
+    E[Permissions]
+    E -->|producteur| Utilisateur
+    E -->|waste-picker| Utilisateur
+
+    F[Exigences]
+    F -->|client_id| Utilisateur
+```
+
+### Explication des éléments du prompt
+
+| Élément | Description |
+|---------|-------------|
+| **Nom du modèle** | `utilisateur` (ou un nom différent selon votre préférence) |
+| **Champs** | `client_id`, `nom`, `prenom`, `email`, `mot_de_passe`, `role` (optionnel) |
+| **Relations** | - `app_mobile` : lie le compte utilisateur à l’app mobile (le waste‑picker).<br>- `waste_picker` : associe le compte utilisateur au waste‑picker lui‑même. |
+| **Permissions** | Définissez les rôles (`producteur`, `waste-picker`) qui déterminent les droits d’accès (lecture, création, modification, etc.). |
+| **Exigences** | Le champ `client_id` doit correspondre au même identifiant que le modèle `utilisateur`. |
+
+### Exemple de configuration des permissions
+
+Dans le module **`utilisateur`**, ajoutez une relation **`app_mobile`** et définissez les rôles :
+
+```mermaid
+graph TD
+    Utilisateur -->|app_mobile| Utilisateur
+```
+
+- **Rôle `producteur`** → peut créer, modifier et supprimer des offres, publier des enlèvements, payer les paiements.
+- **Rôle `waste-picker`** → peut lire les offres existantes, réserver des missions, exécuter des livraisons, payer les paiements.
+
+### Exemple de configuration des exigences
+
+Dans le module **`utilisateur`**, ajoutez une relation **`client_id`** et définissez :
+
+```mermaid
+graph TD
+    Utilisateur -->|client_id| Utilisateur
+```
+
+- **Exigence `client_id`** → doit correspondre au même identifiant que le modèle `utilisateur`.
+
+---
+
+**Utilisez ce prompt pour créer le module `utilisateur` dans Odoo.** Il définira correctement la relation « utilisateur » vers l’app mobile, permet de créer et modifier des comptes selon le type (producteur ou waste‑picker), et définit les permissions et exigences nécessaires. Si vous avez besoin d’un script concret pour générer le modèle ou de valider les permissions, n’hesitez pas à le demander !

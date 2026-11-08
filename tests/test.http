@@ -1,0 +1,44 @@
+# -*- coding: utf-8 -*-
+### Test inscription waste-picker
+POST https://flow.icones-soft.com/api/utilisateur/register
+Content-Type: application/json
+
+{
+    "nom": "Ramasy",
+    "prenom": "Paul",
+    "email": "paul.ramasy@waste-picker.com",
+    "mot_de_passe": "MotDePasse123",
+    "role": "waste_picker"
+}
+
+
+### Test connexion
+POST https://flow.icones-soft.com/api/utilisateur/login
+Content-Type: application/json
+
+{
+    "email": "paul.ramasy@waste-picker.com",
+    "mot_de_passe": "MotDePasse123"
+}
+
+
+### Test liste des producteurs
+POST https://flow.icones-soft.com/api/utilisateur/list
+Content-Type: application/json
+
+{
+    "role": "producteur"
+}
+
+
+### Test inscription waste-picker (email alternatif)
+POST https://flow.icones-soft.com/api/utilisateur/register
+Content-Type: application/json
+
+{
+    "nom": "Ramasy",
+    "prenom": "Paul",
+    "email": "paul.ramasy2@waste-picker.com",
+    "mot_de_passe": "MotDePasse123",
+    "role": "waste_picker"
+}

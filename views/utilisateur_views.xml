@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================ -->
+    <!--              VUE FORMULAIRE                  -->
+    <!-- ============================================ -->
+    <record id="view_utilisateur_form" model="ir.ui.view">
+        <field name="name">custom.utilisateur.form</field>
+        <field name="model">custom.utilisateur</field>
+        <field name="arch" type="xml">
+            <form string="Utilisateur">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="nom_complet"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Informations personnelles">
+                            <field name="client_id"/>
+                            <field name="nom"/>
+                            <field name="prenom"/>
+                            <field name="email"/>
+                            <field name="role"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Relations">
+                            <field name="app_mobile_id"/>
+                            <field name="waste_picker_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ============================================ -->
+    <!--              VUE LISTE (TREE)                -->
+    <!-- ============================================ -->
+    <record id="view_utilisateur_tree" model="ir.ui.view">
+        <field name="name">custom.utilisateur.tree</field>
+        <field name="model">custom.utilisateur</field>
+        <field name="arch" type="xml">
+            <tree string="Utilisateurs">
+                <field name="client_id"/>
+                <field name="nom"/>
+                <field name="prenom"/>
+                <field name="email"/>
+                <field name="role"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- ============================================ -->
+    <!--              VUE RECHERCHE                   -->
+    <!-- ============================================ -->
+    <record id="view_utilisateur_search" model="ir.ui.view">
+        <field name="name">custom.utilisateur.search</field>
+        <field name="model">custom.utilisateur</field>
+        <field name="arch" type="xml">
+            <search string="Rechercher un utilisateur">
+                <field name="nom"/>
+                <field name="prenom"/>
+                <field name="email"/>
+                <filter string="Producteurs" name="filter_producteur" domain="[('role', '=', 'producteur')]"/>
+                <filter string="Waste-Pickers" name="filter_waste_picker" domain="[('role', '=', 'waste_picker')]"/>
+                <separator/>
+                <filter string="Archivés" name="filter_inactive" domain="[('active', '=', False)]"/>
+                <group expand="0" string="Grouper par">
+                    <filter string="Rôle" name="groupby_role" context="{'group_by': 'role'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ============================================ -->
+    <!--              ACTION                          -->
+    <!-- ============================================ -->
+    <record id="action_utilisateur" model="ir.actions.act_window">
+        <field name="name">Utilisateurs</field>
+        <field name="res_model">custom.utilisateur</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_utilisateur_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Créer un nouvel utilisateur
+            </p>
+        </field>
+    </record>
+
+</odoo>

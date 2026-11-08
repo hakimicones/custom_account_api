@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Menu principal -->
+    <menuitem
+        id="menu_custom_account_root"
+        name="Gestion Utilisateurs"
+        groups="base.group_system,custom_account_api.group_admin"
+        sequence="10"
+    />
+
+    <!-- Sous-menu : Utilisateurs -->
+    <menuitem
+        id="menu_utilisateur"
+        name="Utilisateurs"
+        parent="menu_custom_account_root"
+        action="action_utilisateur"
+        groups="base.group_system,custom_account_api.group_admin"
+        sequence="10"
+    />
+
+</odoo>
